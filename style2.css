@@ -14,7 +14,7 @@ body{
     padding-top: 2%;
 }
 
-.sign-up-form{
+.sign-in-form{
     width: 300px;
     box-shadow: 0 0 3px 0 rgba(0,0,0,0.4);
     background-color: rgba(176, 170, 170, 0.536);
@@ -23,7 +23,7 @@ body{
     text-align: center;
 }
 
-.sign-up-form h1{
+.sign-in-form h1{
     color: #fff;
     margin-bottom: 30px;
     text-align: center;
