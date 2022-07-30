@@ -1,0 +1,90 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Kaisei Opti', serif;
+}
+.wrapper{
+    width: 1170px;
+    margin: auto;
+}
+body{
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url("background2.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+
+.nav-area{
+    float: right;
+    list-style:none;
+    margin-top: 20px;
+    padding-right: 10px;
+
+}
+
+.nav-area li{
+    display: inline-block;
+}
+
+.nav-area li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: 18px;
+}
+
+.nav-area li a:hover{
+    background: #fff;
+    color: #333;
+}
+
+.logo img{
+    width:100px;
+    float: left;
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+.welcome-text{
+    position:absolute;
+    margin: 20% 30%;
+    text-align:center;
+}
+
+.welcome-text h1{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 60px;
+}
+
+.welcome-text p{
+    border: 1px solid #fff;
+    padding: 10px 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-block;
+    color: white;
+
+}
+
+.welcome-text li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    margin: 20px;
+    font-size: 18px;
+    background: none;
+}
+
+.welcome-text li:hover{
+    background: rgba(183, 17, 233, 0.378);
+    color: #333;
+    width: 100%;
+    text-align: center;
+}

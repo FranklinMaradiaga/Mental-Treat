@@ -17,15 +17,19 @@ def login():
     if request.method == "POST":
         email = request.form.get("myemail")
         password = request.form.get("password")
-
-
+        if request.form.get("button") == "Clicked":
+            print("You know it")
+            return meditation()
 
     return render_template('signin.html')
 
 @app.route('/signup')
 def signup():
-    form = RegistrationForm()
-    return render_template('signup.html', form=form)
+    return render_template('signup.html')
+
+@app.route('/meditation')
+def meditation():
+    return render_template('meditation.html')
 
 
     
