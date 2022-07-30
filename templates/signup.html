@@ -16,9 +16,9 @@
         </div>
         <h1>Create Account</h1>
         <form>
-            <input type="email" class="input-box" placeholder="Enter Your Email">
-            <input type="password" class="input-box" placeholder="Enter Your Password">
-            <button type="button" class="signup-btn">Create Account</button>
+            <input type="email" class="input-box" placeholder="Enter Your Email" required>
+            <input type="password" class="input-box" placeholder="Enter Your Password" required>
+            <button type="submit" class="signup-btn">Create Account</button>
             <hr>
             <span class="text">Already Registered? <a href="{{ url_for('login') }}" class="text login-link">Log In Here</a>
             </span>
