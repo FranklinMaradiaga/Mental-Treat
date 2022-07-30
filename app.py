@@ -1,19 +1,31 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from registration import RegistrationForm
+import secrets
 
 # Create a Flask instance
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secrets.token_hex(16)
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    # return request.method 
+    if request.method == "POST":
+        email = request.form.get("myemail")
+        password = request.form.get("password")
+
+
+
     return render_template('signin.html')
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    form = RegistrationForm()
+    return render_template('signup.html', form=form)
 
 
     

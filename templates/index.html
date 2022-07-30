@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset ="utf-8">
+    <title>
+        Mental Treat
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class = "wrapper">
+    <div class = "logo">
+        <img src = "{{ url_for('static',filename='Logo2.png') }}" alt = "Logo">
+        </div>
+        <ul class = "nav-area">
+            <li><a href = "{{ url_for('login') }}" >Log In</a></li>
+            <li><a href = "{{ url_for('signup') }}">Create Account</a></li>
+        </ul>
+    </div>
+
+    <div class = "welcome-text">
+        <h1>Mental Treat</h1>
+        <p>Mental Treat is the world's best productivty app that allows users to complete tasks and gain a treat at the end.</p>
+
+
+    </div>
+
+
+
+
+</body>
+</html>
