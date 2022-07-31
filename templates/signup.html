@@ -15,10 +15,12 @@
             <img src="{{ url_for('static',filename='Logo2.png') }}" alt="Logo">
         </div>
         <h1>Create Account</h1>
-        <form>
-            <input type="email" class="input-box" placeholder="Enter Your Email" required>
-            <input type="password" class="input-box" placeholder="Enter Your Password" required>
-            <button type="submit" class="signup-btn">Create Account</button>
+        <form method="POST">
+            <input type="text" class="input-box" placeholder="Create a Username" name="username" required>
+            <input type="email" class="input-box" placeholder="Enter Your Email" name="email" required>
+            <input type="password" class="input-box" placeholder="Create Password" name="password" required>
+            <input type="password" class="input-box" placeholder="Confirm Password" name="confirm-password" required>
+            <button type="submit" class="signup-btn" name="button" value="Clicked"> Create Account </button>
             <hr>
             <span class="text">Already Registered? <a href="{{ url_for('login') }}" class="text login-link">Log In Here</a>
             </span>

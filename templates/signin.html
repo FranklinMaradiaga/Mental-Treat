@@ -7,24 +7,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@500&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
+
     <div class="sign-in-form">
-        <div class = "logo">
-            <img src = "{{ url_for('static',filename='Logo2.png') }}" alt = "Logo">
+        <div class="logo">
+            <img src="{{ url_for('static',filename='Logo2.png') }}" alt="Logo">
         </div>
         <h1>Log In</h1>
-        <form method="POST">
-            <input type = "email" class="input-box" name = "myemail" placeholder = "Enter Your Email" required>
-            <input type = "password" class="input-box" name = "password" placeholder = "Enter Your Password" required>
-            <button type ="submit"class = "signin-btn" name= "button" value="Clicked">Log In</button>
+        <form method="POST"> 
+            <input type="email" class="input-box" name="myemail" placeholder="Enter Your Email" required>
+            <input type="password" class="input-box" name="password" placeholder="Enter Your Password" required>
+            <button type="submit" class="signin-btn" name="button" value="Clicked">Log In</button>
             <hr>
-            <span class="text">Not a Member?
-                <a href="{{ url_for('signup') }}" class="text login-link">Create Account</a>
+            <span class="text">Not a Member? <a href="{{ url_for('signup') }}" class="text login-link">Create Account</a>
             </span>
         </form>
     </div>
+
 </body>
 
 </html>
