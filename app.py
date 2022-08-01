@@ -19,9 +19,22 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return SignUp.query.get(int(user_id))
+
+
+# Delete All Records From Database
+def delete_db():
+    db.session.query(Users).delete()
+    db.session.commit()
+
+
+# Get data from database
+def get_data():
+    return Users.query.all()
+
 
 # Create Model (Table in database)
 class SignUp(db.Model, UserMixin):
@@ -34,20 +47,6 @@ class SignUp(db.Model, UserMixin):
     # Create A String
     def __repr__(self):
         return '<Username %r>' % self.username
-
-our_users = SignUp.query.order_by(SignUp.date_added)
-
-for user in our_users:
-    print("Are we here:", user.email, " ", user.password, " ", user.id)
-
-# Delete All Records From Database
-def delete_db():
-    db.session.query(Users).delete()
-    db.session.commit()
-
-# Get data from database
-def get_data():
-    return Users.query.all()
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -73,6 +72,7 @@ def login():
 
     return render_template('signin.html')
 
+
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -80,9 +80,11 @@ def logout():
     flash("You Have Been Logged Out! Thanks For Stopping By...")
     return redirect(url_for('home'))
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -131,7 +133,14 @@ def signup():
 def meditation():
     return render_template('meditation.html')
 
-    
+
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return response
+
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
     # print(get_data())
