@@ -9,8 +9,13 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 # Secret Key
 app.config['SECRET_KEY'] = secrets.token_hex(16)
-# Add Database
+
+# Add Database # Old SQLite DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///signup.db'
+
+# New MySQL DB
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password123@localhost/users'
+
 #add bycrypt for hash and salt
 flask_bcrypt = Bcrypt(app)
 
