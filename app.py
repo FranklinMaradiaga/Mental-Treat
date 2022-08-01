@@ -26,6 +26,7 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return SignUp.query.get(int(user_id))
 
+
 # Create Model (Table in database)
 class SignUp(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -53,8 +54,17 @@ def get_data():
     return Users.query.all()
 
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
-def login():
+def login(self):
+
+    #hash
+    username = username
+    password = password
+
+    password_hash = logging_in(username)
+    self.comparePassword(password, password_hash)
 
     # return request.method 
     if request.method == "POST":
@@ -88,7 +98,15 @@ def home():
     return render_template('index.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
-def signup():
+
+def signup(self):
+
+     #hash
+        username = username
+        password = password
+        password_hash = self.passwordHashing(password)
+        insert(username, password_hash)
+
 
     # return request.method 
     if request.method == "POST":
@@ -127,19 +145,39 @@ def signup():
                     print("Are we here:", user.email, " ", user.password)
 
     return render_template('signup.html')
+            
+        def passwordHashing(self, password):
+            password_bytes = password.encode('utf8')
+            salt = bcrypt.gensalt(14)
+            password_hash_byte = bcrypt.hashpw(password_bytes, salt)
+            password_hash_str = password_hash_byte.decode()
+            return password_hash_str
 
+
+'''
     #hashing method
-    pw_hash = bcrypt.generate_password_hash(‘hunter2’).decode(‘utf-8’)
-    bcrypt.check_password_hash(pw_hash, 'hunter2') # returns True
+    password = 'password'
 
-    password = 'hunter2'
-    pw_hash = bcrypt.generate_password_hash(password)
+    #converting pw to array of bytes
+    bytes = password.encode('utf-8')
 
-    candidate = 'secret'
-    bcrypt.check_password_hash(pw_hash, candidate)
+    #generating the salt
+    salt = bycrpt.gensalt()
 
-    pw_hash = bcrypt.generate_password_hash('secret', 10)
-    bcrypt.check_password_hash(pw_hash, 'secret') # returns True
+    #hasing the pw
+    hash = bycrpt.hashpw(bytes, salt)
+
+    #take user input for pw
+    userPassword = 'password'
+
+    #encode user pw
+    userBytes = userPassword.encode('utf-8')
+
+    #check pw
+    result = bycrpt.checkpw(userBytes, hash)
+'''
+  
+     
 
 
 @app.route('/meditation')
