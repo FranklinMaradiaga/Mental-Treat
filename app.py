@@ -3,6 +3,7 @@ import secrets
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from flask_bcrypt import Bcrypt
 
 # Create a Flask instance
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 # Add Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///signup.db'
+#add bycrypt for hash and salt
+flask_bcrypt = Bcrypt(app)
 
 #Initialize the Database
 db = SQLAlchemy(app)
@@ -124,6 +127,19 @@ def signup():
                     print("Are we here:", user.email, " ", user.password)
 
     return render_template('signup.html')
+
+    #hashing method
+    pw_hash = bcrypt.generate_password_hash(‘hunter2’).decode(‘utf-8’)
+    bcrypt.check_password_hash(pw_hash, 'hunter2') # returns True
+
+    password = 'hunter2'
+    pw_hash = bcrypt.generate_password_hash(password)
+
+    candidate = 'secret'
+    bcrypt.check_password_hash(pw_hash, candidate)
+
+    pw_hash = bcrypt.generate_password_hash('secret', 10)
+    bcrypt.check_password_hash(pw_hash, 'secret') # returns True
 
 
 @app.route('/meditation')
