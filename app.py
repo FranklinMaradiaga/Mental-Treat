@@ -1,23 +1,18 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-import secrets
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
-from flask_bcrypt import Bcrypt
+import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Create a Flask instance
 app = Flask(__name__)
 # Secret Key
-app.config['SECRET_KEY'] = secrets.token_hex(16)
+app.config['SECRET_KEY'] = '3dcd42e793260e135ac9bc75ac72d80e'
 
-# Add Database # Old SQLite DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///signup.db'
-
-# New MySQL DB
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password123@localhost/users'
-
-#add bycrypt for hash and salt
-flask_bcrypt = Bcrypt(app)
+# Add Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///create_account.db'
 
 #Initialize the Database
 db = SQLAlchemy(app)
@@ -28,57 +23,106 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return SignUp.query.get(int(user_id))
-
-
-# Delete All Records From Database
-def delete_db():
-    db.session.query(Users).delete()
-    db.session.commit()
-
-
-# Get data from database
-def get_data():
-    return Users.query.all()
-
-
 # Create Model (Table in database)
-class SignUp(db.Model, UserMixin):
+class Create_Account(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
-    email = db.Column(db.String(200), nullable=False, unique=True)
-    password = db.Column(db.String(150), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)
+    password_hash = db.Column(db.String(128), nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute!')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+    
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     # Create A String
     def __repr__(self):
-        return '<Username %r>' % self.username
+        return '<Username %r>' % self.email
+
+def get_data():
+        our_users = Create_Account.query.order_by(Create_Account.date_added)
+        for user in our_users:
+            print("id: ", user.id)
+            print("password: ", user.password_hash)
+            print("email: ", user.email)
+            print("username: ", user.username)
+    
+        print("Are we here:", Create_Account.query.all())
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
-    # return request.method 
     if request.method == "POST":
         email = request.form.get("myemail")
         password = request.form.get("password")
 
         if request.form.get("button") == "Clicked":
-            user = SignUp.query.filter_by(email=email).first()
+            user = Create_Account.query.filter_by(email=email).first()
 
             if user:
-                # Check the hash (Not hashed yet)
-                login_user(user)
-                flash("Login Successfull!!")
-                return redirect(url_for('meditation'))
+                # Check if the hashed password matches the user's input
+                if check_password_hash(user.password_hash, password):
+                    print(user, "Password!!!: ", check_password_hash(user.password_hash, password))
+                    login_user(user)
+                    flash("Login Successfull!!")
+                    return redirect(url_for('meditation'))
+                else:
+                    flash("Wrong password!")
             else:
                 flash("That User Doesn't Exist! - Try Again...")
 
-            # return meditation()
-
     return render_template('signin.html')
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    get_data()
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm-password")
+
+        # When user clicks the submit button
+        if request.form.get("button") == "Clicked":
+            username_exists = Create_Account.query.filter_by(username=username).first()
+            email_exists = Create_Account.query.filter_by(email=email).first()
+
+            # Checks if the username and emails are unique (not in the database)
+            if username_exists is None and email_exists is None:
+                
+                # Hashed password
+                hashed_pw = generate_password_hash(password, "sha256")
+
+                user = Create_Account(username=username, email=email, password_hash=hashed_pw)
+                db.session.add(user)
+                db.session.commit()
+
+                our_users = Create_Account.query.order_by(Create_Account.date_added)
+
+                for user in our_users:
+                    print(user.email, user.password_hash)
+
+                print("In If:", Create_Account.query.all())
+
+                return login()
+
+            else:
+                print("Username or Email already exists")
+                our_users = Create_Account.query.order_by(Create_Account.date_added)
+
+                for user in our_users:
+                    print("In the else:", user.email, " ", user.password_hash)
+
+    return render_template('signup.html')
+
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -92,62 +136,7 @@ def logout():
 @app.route('/')
 def home():
     return render_template('index.html')
-
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-
-    # return request.method 
-    if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        confirm_password = request.form.get("confirm-password")
-
-        # When user clicks the submit button
-        if request.form.get("button") == "Clicked":
-            username_exists = SignUp.query.filter_by(username=username).first()
-            email_exists = SignUp.query.filter_by(email=email).first()
-            print(username_exists)
-            print(email_exists)
-
-            # Checks if the username and emails are unique (not in the database)
-            if username_exists is None and email_exists is None:
-                user = SignUp(username=username, email=email, password=password)
-                db.session.add(user)
-                db.session.commit()
-
-                our_users = SignUp.query.order_by(SignUp.date_added)
-
-                for user in our_users:
-                    print(user.email, user.password)
-
-                print("In If:", SignUp.query.all())
-
-                return login()
-
-            else:
-                print("Username or Email already exists")
-                our_users = SignUp.query.order_by(SignUp.date_added)
-
-                for user in our_users:
-                    print("Are we here:", user.email, " ", user.password)
-
-    return render_template('signup.html')
-
-    #hashing method
-    pw_hash = bcrypt.generate_password_hash(‘hunter2’).decode(‘utf-8’)
-    bcrypt.check_password_hash(pw_hash, 'hunter2') # returns True
-
-    password = 'hunter2'
-    pw_hash = bcrypt.generate_password_hash(password)
-
-    candidate = 'secret'
-    bcrypt.check_password_hash(pw_hash, candidate)
-
-    pw_hash = bcrypt.generate_password_hash('secret', 10)
-    bcrypt.check_password_hash(pw_hash, 'secret') # returns True
-
+  
 
 @app.route('/meditation')
 @login_required
@@ -161,7 +150,18 @@ def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     return response
 
+@login_manager.user_loader
+def load_user(user_id):
+    return Create_Account.query.get(int(user_id))
+
+
+# Delete All Records From Database
+def delete_db():
+    db.session.query(Create_Account).delete()
+    db.session.commit()
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
-    # print(get_data())
+    # u = Create_Account()
+    # u.password = 'cat'
+    # print(u.password_hash)
