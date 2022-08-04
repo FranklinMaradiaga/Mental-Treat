@@ -3,8 +3,7 @@ import requests
 def activity_generator():
     url = "http://www.boredapi.com/api/activity"
     data = requests.get(url)
-    print(data.json()['activity'])
-    print(data.json()['type'])
+    return data.json()['activity']
 
 def get_daily_quote():
     url = "https://zenquotes.io/api/today"
@@ -22,7 +21,5 @@ def get_kanye_quotes():
     print(data)
     print(data.json()['quote'])
 
-
-print(get_daily_quote())
 print("\n\n")
-print(get_author())
+activity_generator()

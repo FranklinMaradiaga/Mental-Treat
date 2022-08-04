@@ -19,6 +19,7 @@ body{
 
 .nav-area{
     float: top;
+    float: right;
     list-style:none;
     margin-top: 20px;
     padding-right: 10px;
@@ -52,6 +53,9 @@ body{
     position:absolute;
     margin: 20% 30%;
     text-align:center;
+    margin: 15% 20%;
+    text-align:center;
+    padding:30px;
 }
 
 .welcome-text h1{
@@ -59,6 +63,9 @@ body{
     color: #fff;
     text-transform: uppercase;
     font-size: 60px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 45px;
 }
 
 .welcome-text p{
@@ -67,6 +74,7 @@ body{
     text-decoration: none;
     text-transform: uppercase;
     font-size: 16px;
+    font-size: 24px;
     margin-top: 20px;
     display: inline-block;
     color: white;
@@ -88,3 +96,29 @@ body{
     width: 100%;
     text-align: center;
 }
+
+.welcome-text li button{
+    color: rgb(30, 212, 39);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+
+button{
+    /* width: 50%; */
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor:pointer;
+   
+}
+
+/* .welcome-text li a:hover{
+    background: rgba(14, 187, 57, 0.739);
+    color: #333;
+    width: 50%;
+    text-align: center;
+} */
