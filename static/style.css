@@ -10,7 +10,7 @@
 }
 body{
     background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url("pexels-cottonbro-4065876.jpg");
+    url("background.jpg");
     height: 100vh;
     background-size: cover;
     background-position: center center;
