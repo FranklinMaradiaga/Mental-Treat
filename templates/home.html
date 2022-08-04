@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <style>
+        p{
+            color: white;
+        }
+    </style>
+   <!--Homepage-->
+    <section class="home swiper" id="home"> 
+        <div class="swiper-wrapper">
+            <!--box 1-->
+            <div class="swiper-slide container">
+                <!-- <img src="{{ url_for('static', filename='image (2).png') }}" /> -->
+                <div class="home-text">
+                    <!-- <span>Did You Know?</span> -->
+                    <br> <br>
+                    <h1> Mental Treat</h1>
+                </div>
+            </div>
+            <!--box 2-->
+            <div class="swiper-slide container">
+                 <!-- <img src="{{ url_for('static', filename='image (1).png') }}" /> -->
+                <div class="home-text">
+                    <span>Daily Quote</span>
+                    <h1>{{ daily_quote }}</h1>
+                    <h4 style="color:white;"> {{ author }} </h4>
+                </div>
+            </div>
+            <!--box 3-->
+            <div class="swiper-slide container">
+                <!-- <img src="{{ url_for('static', filename='Beautiful Sea Wallpaper HD Freetopwallpapercom.jpg') }}" /> -->
+                <div class="home-text">
+                    <br><br><br>
+                    <span>ABOUT US</span>
+                    <br> <br>
+                    <p style="color:white;">
+                    Mental Treat (MT) was founded by four (4) university juniors: Israel Oyekan, Janeil Speid, Franklin Maradiaga and
+                    Pericles Gadri. MT was created with procrastinators in mind who struggle to complete all ranges of tasks. It is a
+                    platform to record to do lists, goals or any tasks you want to tackle. This website uses the art of not knowing to drive
+                    our little procrastinators to productivity and success. The art of not knowing is done by having a pop up at the end of
+                    each completed task listed with a random activity. In addition, after accomplishing all the tasks or waking up to do so,
+                    it is only right that the mind gets to rest and heal. MT recognizes this and dedicated a part of its website to
+                    meditating and taking care of the mental health by giving the user exclusive access to meditation sounds that prove to
+                    do wonders. At MT, your success and mental care is our priority and we pledge to do our best to let that be possible.
+                    <br> <br>
+                    MT believes self forgiveness is the first step in reducing the amount of time one spends procrastinating. After that
+                    stage we encourage you to push and complete all the tasks and we promise that you will feel satisfied and accomplished
+                    after you have received the random activity. We want you to be motivated and encouraged to continue on the productivity
+                    path so we have motivational quotes that you will see each day you are logged in.
+                    </p>
+
+                </div>
+            </div>
+            <!--box 4-->
+            <div class="swiper-slide container">
+                <!-- <img src="{{ url_for('static', filename='image (2).png') }}" /> -->
+                <div class="home-text">
+                    <span>Did You Know?</span>
+                    <br> <br>
+                    <p> 80% - 95% of college students procrastinate at some level </p>
+                    <br>
+                    <p> 15% - 20% of adults regularly procrastinate </p>
+                    <br>
+                    <p> Procrastinating 3 hours per day costs businesses $15,000 anually for a $40,000 salaried worker. </p>
+                    <br>
+                    <p> A YouGov survey found that people spend approximately 218 minutes procrastinating daily, which is equivalent to 55 days per year! </p>
+                </div>
+            </div>
+
+            <!--box 5-->
+            <div class="swiper-slide container">
+                <!-- <img src="{{ url_for('static', filename='image (2).png') }}" /> -->
+                <div class="home-text">
+                    <span>Contact Us</span>
+                    <br> <br>
+
+                    <p> Janeil Speid </p>
+                    <a href="https://www.linkedin.com/in/janeilspeid">Janeil's LinkedIn</a>
+                    <br> <br>
+
+                    <p> Israel Oyekan </p>
+                    <a href="https://www.linkedin.com/in/israel-oyekan-947b871b0/">Israel's LinkedIn</a>
+                    <br> <br>
+
+                    <p> Franklin Maradiaga </p>
+                    <a href="https://www.linkedin.com/in/franklin-maradiaga/">Franklin's LinkedIn</a>
+                    <br> <br>
+
+                    <p> Pericles Gadri </p>
+                    <a href="https://www.linkedin.com/in/franklin-maradiaga/">Pericles LinkedIn</a>
+                </div>
+            </div>
+
+
+          </div>
+          
+          <div class="swiper-pagination"></div>
+    </section>
+    
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Link to Custome JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+
+{% endblock content %}

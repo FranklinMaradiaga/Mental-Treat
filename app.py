@@ -5,6 +5,7 @@ from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
+from apis import get_daily_quote, get_author
 
 # Create a Flask instance
 app = Flask(__name__)
@@ -31,20 +32,25 @@ class Create_Account(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute!')
+
 
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
     
+    
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
 
     # Create A String
     def __repr__(self):
         return '<Username %r>' % self.email
+
 
 def get_data():
         our_users = Create_Account.query.order_by(Create_Account.date_added)
@@ -72,7 +78,7 @@ def login():
                     print(user, "Password!!!: ", check_password_hash(user.password_hash, password))
                     login_user(user)
                     flash("Login Successfull!!")
-                    return redirect(url_for('meditation'))
+                    return redirect(url_for('home1'))
                 else:
                     flash("Wrong password!")
             else:
@@ -112,17 +118,16 @@ def signup():
 
                 print("In If:", Create_Account.query.all())
 
-                return login()
+                return redirect(url_for('login'))
 
             else:
-                print("Username or Email already exists")
+                flash("Username or Email already exists")
                 our_users = Create_Account.query.order_by(Create_Account.date_added)
 
                 for user in our_users:
                     print("In the else:", user.email, " ", user.password_hash)
 
     return render_template('signup.html')
-
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -133,22 +138,34 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('index.html')
-  
+
+@app.route('/')
+@login_required
+def home1():
+    daily_quote = get_daily_quote()
+    author = get_author()
+    print(daily_quote, author)
+    return render_template('home.html', daily_quote=daily_quote, author=author)
 
 @app.route('/meditation')
 @login_required
 def meditation():
     return render_template('meditation.html')
 
+@app.route('/taskmanager', methods=['GET', 'POST'])
+@login_required
+def task_manager():
+    return redirect('https://dnb7l6.csb.app/')
 
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     return response
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -160,8 +177,6 @@ def delete_db():
     db.session.query(Create_Account).delete()
     db.session.commit()
 
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
-    # u = Create_Account()
-    # u.password = 'cat'
-    # print(u.password_hash)

@@ -9,8 +9,12 @@ def activity_generator():
 def get_daily_quote():
     url = "https://zenquotes.io/api/today"
     data = requests.get(url)
-    print(data.json()[0]['q'])
-    print(data.json()[0]['a'])
+    return data.json()[0]['q']
+
+def get_author():
+    url = "https://zenquotes.io/api/today"
+    data = requests.get(url)
+    return data.json()[0]['a']
 
 def get_kanye_quotes():
     url = "https://api.kanye.rest/"
@@ -19,9 +23,6 @@ def get_kanye_quotes():
     print(data.json()['quote'])
 
 
-print("\n")
-activity_generator()
+print(get_daily_quote())
 print("\n\n")
-get_daily_quote()
-print("\n\n")
-get_kanye_quotes()
+print(get_author())

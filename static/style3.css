@@ -18,7 +18,7 @@ body{
 }
 
 .nav-area{
-    float: right;
+    float: top;
     list-style:none;
     margin-top: 20px;
     padding-right: 10px;
