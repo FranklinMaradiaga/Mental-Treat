@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -136,12 +135,43 @@ def logout():
 @app.route('/')
 def home():
     return render_template('index.html')
-  
+exit= 0
+exit2= 0
 
-@app.route('/meditation')
+@app.route('/meditation', methods=['GET', 'POST'])
 @login_required
 def meditation():
-    return render_template('meditation.html')
+    morning = False
+    sleep = False
+    text = True
+   
+    if request.method == "POST":
+
+        if request.form.get("b") == "c":
+            print('maybe')
+            morning= True
+            global exit
+
+            if exit ==0:
+                exit = 1
+                text = False
+            elif exit == 1:
+                exit = 0
+        if request.form.get("h") == "y":
+            print('suppose')
+            sleep= True
+            global exit2
+
+            if exit2 ==0:
+                exit2 = 1
+                text = False
+            elif exit2 == 1:
+                exit2 = 0
+
+
+
+    return render_template('meditation.html', morn=morning, night= sleep, ex= exit, ex2=exit2, message= text )
+    
 
 
 # Ensure responses aren't cached

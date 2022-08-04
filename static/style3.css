@@ -50,15 +50,16 @@ body{
 
 .welcome-text{
     position:absolute;
-    margin: 20% 30%;
+    margin: 15% 20%;
     text-align:center;
+    padding:30px;
 }
 
 .welcome-text h1{
     text-align: center;
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-size: 60px;
+    font-size: 45px;
 }
 
 .welcome-text p{
@@ -66,25 +67,39 @@ body{
     padding: 10px 25px;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 24px;
     margin-top: 20px;
     display: inline-block;
     color: white;
 
 }
 
-.welcome-text li a{
-    color: #fff;
+.welcome-text li button{
+    color: rgb(30, 212, 39);
     text-decoration: none;
-    padding: 5px 20px;
-    margin: 20px;
-    font-size: 18px;
-    background: none;
+    font-size: 16px;
 }
 
-.welcome-text li:hover{
-    background: rgba(183, 17, 233, 0.378);
-    color: #333;
-    width: 100%;
-    text-align: center;
+
+
+button{
+    /* width: 50%; */
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor:pointer;
+   
 }
+
+/* .welcome-text li a:hover{
+    background: rgba(14, 187, 57, 0.739);
+    color: #333;
+    width: 50%;
+    text-align: center;
+} */
+
+
+
+
