@@ -12,10 +12,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '3dcd42e793260e135ac9bc75ac72d80e'
 
 # Add Database (sqlite) (old database)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///create_account.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///create_account.db'
 
 # Postgres Database
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rlunagwxzwewrk:c852043dba6f103b70bbc885abffd7ff30b502da516b20da869530ab5a48bb4c@ec2-54-152-28-9.compute-1.amazonaws.com:5432/dc5q1cr9uem3tj'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rlunagwxzwewrk:c852043dba6f103b70bbc885abffd7ff30b502da516b20da869530ab5a48bb4c@ec2-54-152-28-9.compute-1.amazonaws.com:5432/dc5q1cr9uem3tj'
 #Initialize the Database
 db = SQLAlchemy(app)
 
