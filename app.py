@@ -208,7 +208,7 @@ def activity():
 @app.route('/taskmanager', methods=['GET', 'POST'])
 @login_required
 def task_manager():
-    return redirect('https://gq0nvz.csb.app')
+    return redirect('https://dnb7l6.csb.app/')
 
 # Ensure responses aren't cached
 @app.after_request
