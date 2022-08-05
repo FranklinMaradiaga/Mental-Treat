@@ -130,7 +130,7 @@ header{
 
 .text p{
     width: 80%;
-    background-color: blue;
+    background-color: rgba(13, 13, 117, 0.212);
     border-radius: 20px;
 }
 
@@ -143,11 +143,39 @@ header{
     font-weight: 500;
     text-transform: uppercase;
 }
+
+.home-text p{
+    font-size: 16px;
+
+}
+
 .home-text h1{
     color: var(--bg-color);
     font-size: 4rem;
     font-weight: 700;
     margin-bottom:  1rem;
+}
+.home-text1 span{
+    font-size: 45px;  
+    color: black;
+    position: relative;
+}
+.home-text1 p{
+    color:white; 
+    font-size: 15px; 
+    position: relative; 
+}
+.home-text2 span{
+    font-size:40px;
+    font-style: italic;
+    color:black;
+    position: relative;
+}
+.home-text2 p{
+    font size: 18px;
+    font-style:italic;
+    color:white;
+    position:relative;
 }
 .play{
     position: absolute;
@@ -214,4 +242,33 @@ header{
     font-size: 20px;
     position: relative;
 
+}
+
+.text span{
+
+}
+.text1 span{
+    font-size: 45px;
+    color: black;
+}
+
+.profile {
+    list-style:none;
+    margin: 20px;
+    padding:10px;
+}
+
+.profile li{
+    display: inline-block;
+}
+.profile li a{
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size:30px;
+    color: white;
+    font-style: italic;
+}
+.profile li a:hover{
+    background: black;
+    color: rgba(19, 122, 170, 0.664)
 }
