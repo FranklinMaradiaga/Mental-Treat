@@ -148,7 +148,7 @@ def home():
 @login_required
 def home1(username="no name"):
     global count
-    count = 1
+    count += 1
 
     daily_quote = get_daily_quote()
     author = get_author()
