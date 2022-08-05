@@ -13,7 +13,6 @@ colorama==0.4.4
 configparser==5.0.2
 crayons==0.4.0
 cryptography==2.1.4
-cycler==0.10.0
 dataclasses==0.8
 Deprecated==1.2.13
 dnspython==2.1.0
