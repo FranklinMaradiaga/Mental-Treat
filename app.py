@@ -11,9 +11,11 @@ app = Flask(__name__)
 # Secret Key
 app.config['SECRET_KEY'] = '3dcd42e793260e135ac9bc75ac72d80e'
 
-# Add Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///create_account.db'
+# Add Database (sqlite) (old database)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///create_account.db'
 
+# Postgres Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rlunagwxzwewrk:c852043dba6f103b70bbc885abffd7ff30b502da516b20da869530ab5a48bb4c@ec2-54-152-28-9.compute-1.amazonaws.com:5432/dc5q1cr9uem3tj'
 #Initialize the Database
 db = SQLAlchemy(app)
 
@@ -200,7 +202,7 @@ def activity():
 @app.route('/taskmanager', methods=['GET', 'POST'])
 @login_required
 def task_manager():
-    return redirect('https://dnb7l6.csb.app/')
+    return redirect('https://gq0nvz.csb.app')
 
 # Ensure responses aren't cached
 @app.after_request
