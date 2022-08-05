@@ -133,6 +133,8 @@ def signup():
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
+    global count
+    count = 0
     logout_user()
     flash("You Have Been Logged Out! Thanks For Stopping By...")
     return redirect(url_for('home'))
