@@ -24,6 +24,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+count = 0
 
 # Create Model (Table in database)
 class Create_Account(db.Model, UserMixin):
@@ -141,16 +142,13 @@ def logout():
 
 @app.route('/')
 def home():
-    global count
-    count += 1
     return render_template('index.html')
 
-count = 0
 @app.route('/home')
 @login_required
 def home1(username="no name"):
     global count
-    count += 1
+    count = 1
 
     daily_quote = get_daily_quote()
     author = get_author()
