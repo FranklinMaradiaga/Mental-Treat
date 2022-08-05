@@ -90,12 +90,6 @@ body{
     background: none;
 }
 
-.welcome-text li:hover{
-    background: rgba(183, 17, 233, 0.378);
-    color: #333;
-    width: 100%;
-    text-align: center;
-}
 
 .welcome-text li button{
     color: rgb(30, 212, 39);
