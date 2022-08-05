@@ -57,7 +57,7 @@ psycopg2==2.7.7
 py==1.10.0
 pycparser==2.21
 pycrypto==2.6.1
-pygobject==3.26.1
+PyGObject==3.26.1
 pyparsing==2.4.7
 pytest==6.2.4
 python-apt==1.6.4
