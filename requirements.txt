@@ -27,7 +27,7 @@ flask-sock==0.4.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.15.1
 greenlet==1.1.0
-gunicorn==20.1.0
+gunicorn==20.0.4
 h11==0.12.0
 helium==3.0.7
 idna==2.6
