@@ -21,7 +21,6 @@
 	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 
-	
 {% endfor %}
 
     <div class = "wrapper">
@@ -37,51 +36,11 @@
     <div class = "welcome-text">
         <h1>Mental Treat</h1>
         <p>Mental Treat is the world's best productivty app that allows users to complete tasks and gain a treat at the end.</p>
-
-
     </div>
-<script src= 'https://code.responsivevoice.org/responsivevoice.js'></script>
-    <script>
 
-    function setCookie(cname,cvalue,exdays)
-    {
-    var d = new Date();
-    d.setTime(d.getTime()+(exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-    }
-
-    function getCookie(cname)
-    {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) 
-      {
-      var c = ca[i].trim();
-      if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-      }
-    return "";
-    }
-
-
-    window.onload=function(){
-        var visited=getCookie("hasPlayed");
-    if(visited != ""){ 
-   
-     responsiveVoice.speak("Welcome");
-    setCookie('hasPlayed', true, 300);
-   
-   
-    }
-
-};
-
-</script>
 
 </body>
 
-<script src= 'https://code.responsivevoice.org/responsivevoice.js'>
-</script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
 </script>
 

@@ -103,5 +103,12 @@
     <!-- Link to Custome JS -->
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
+    {% if count == 1 %}
+    <script src= 'https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script>
+    responsiveVoice.speak("Welcome special user");
+    </script>
+    {% endif %}
+
 
 {% endblock content %}
