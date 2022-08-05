@@ -15,11 +15,10 @@ def get_author():
     data = requests.get(url)
     return data.json()[0]['a']
 
-def get_kanye_quotes():
+def get_kanye_quote():
     url = "https://api.kanye.rest/"
     data = requests.get(url)
-    print(data)
-    print(data.json()['quote'])
+    return (data.json()['quote'])
 
-print("\n\n")
-activity_generator()
+print("\n\n", get_kanye_quote())
+

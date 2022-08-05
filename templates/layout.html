@@ -6,21 +6,6 @@
         Mental Treat
     </title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">
-
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@500&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"> -->
-
 </head>
 <body>
 <!-- 
@@ -42,9 +27,8 @@
             <div class= "bx bx-menu" id="menu-icon"></div>
             <ul class="navbar">
 
-                <li><a href ="{{ url_for('home') }}"  class="home-active">Home</a></li>
-                <li><a href ="{{ url_for('task_manager') }}">Create Task</a></li>
-                <li><a href ="completedtask.html">Completed Task</a></li>
+                <li><a href ="{{ url_for('home1') }}"  class="home-active">Home</a></li>
+                <li><a href ="{{ url_for('task_manager') }}">Task Manager</a></li>
                 <li><a href ="{{ url_for('meditation') }}">Meditation</a></li>
                 <li><a href ="{{ url_for('logout') }}">Log Out</a></li>
             </ul>

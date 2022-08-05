@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">
+</head>
     <style>
+
         p{
             color: white;
         }
@@ -9,14 +18,7 @@
    <!--Homepage-->
     <section class="home swiper" id="home"> 
         <div class="swiper-wrapper">
-            <!-- box 1
-            <div class="swiper-slide container">
-                <img src="{{ url_for('static', filename='image (2).png') }}" />
-                <div class="home-text">
-                    <br> <br>
-                    <h1 class="name"> Mental Treat</h1>
-                </div>
-            </div> -->
+            
             <!--box 2-->
             <div class="swiper-slide container">
                  <!-- <img src="{{ url_for('static', filename='image (1).png') }}" /> -->

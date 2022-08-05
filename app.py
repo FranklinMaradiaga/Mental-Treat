@@ -4,7 +4,7 @@ from datetime import datetime
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
-from apis import get_daily_quote, get_author
+from apis import get_daily_quote, get_author, activity_generator, get_kanye_quote
 
 # Create a Flask instance
 app = Flask(__name__)
@@ -76,7 +76,6 @@ def login():
                 if check_password_hash(user.password_hash, password):
                     print(user, "Password!!!: ", check_password_hash(user.password_hash, password))
                     login_user(user)
-                    flash("Login Successfull!!")
                     return redirect(url_for('home1'))
                 else:
                     flash("Wrong password!")
@@ -185,6 +184,18 @@ def meditation():
 
     return render_template('meditation.html', morn=morning, night= sleep, ex= exit, ex2=exit2, message= text )
     
+@app.route('/activity', methods=['GET', 'POST'])
+@login_required
+def activity():
+    activity = activity_generator()
+    Kanye = False
+    quote = ""
+    if request.method == "POST":
+        if request.form.get("button") == "clicked":
+            Kanye = True
+            quote = get_kanye_quote()
+
+    return render_template('activity.html', activity=activity, Kanye=Kanye, quote=quote)
 
 @app.route('/taskmanager', methods=['GET', 'POST'])
 @login_required
